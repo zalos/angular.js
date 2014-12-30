@@ -42,3 +42,20 @@ To resolve this error, always use path expressions with scope properties that ar
 <my-directive bind="some[3]['property']">
 ```
 
+This error can also occur if you have an optional property you are looking to two-way data-bind only if it exists, use the optional parameter on the isolate scope in the directive:
+```
+<my-directive >
+<my-directive bind="some.property">
+```
+
+```
+myModule.directive('myDirective', function factory() {
+  return {
+    ...
+    scope: {
+      bind: '=?'
+    }
+    ...
+  }
+});
+```
